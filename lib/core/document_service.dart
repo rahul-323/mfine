@@ -12,8 +12,7 @@ class MfineDocumentService {
   // ===========================================================================
 
   static Future<String> downloadPrescription() async {
-    final assetBytes =
-        await rootBundle.load('assets/files/Disha Prescription.pdf');
+    final assetBytes = await rootBundle.load('assets/files/prescription .pdf');
     final bytes = assetBytes.buffer.asUint8List(
       assetBytes.offsetInBytes,
       assetBytes.lengthInBytes,
@@ -27,7 +26,7 @@ class MfineDocumentService {
       directory = await getApplicationDocumentsDirectory();
     }
 
-    final file = File('${directory.path}/Disha Prescription.pdf');
+    final file = File('${directory.path}/prescription .pdf');
 
     await file.writeAsBytes(bytes, flush: true);
 

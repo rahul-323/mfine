@@ -593,7 +593,7 @@ class _ConsultationRoomScreenState extends State<ConsultationRoomScreen> {
               SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  'Disha Prescription.pdf',
+                  'prescription .pdf',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
               ),
@@ -607,23 +607,20 @@ class _ConsultationRoomScreenState extends State<ConsultationRoomScreen> {
                 try {
                   final path = await runWithMfineLoader(
                     context,
-                    () => MfineDocumentService.sharePrescription(
-                      fileName: message.prescriptionFileName ??
-                          'Disha Prescription.pdf',
-                    ),
-                    message: 'Preparing prescription to share...',
+                    MfineDocumentService.downloadPrescription,
+                    message: 'Downloading prescription...',
                   );
                   if (mounted && path != null) {
                     showMfineToast(
                       context,
-                      'Prescription ready to share',
+                      'Prescription downloaded successfully',
                     );
                   }
                 } catch (error) {
                   if (mounted) {
                     showMfineToast(
                       context,
-                      'Could not share prescription',
+                      'Could not download prescription',
                       isError: true,
                     );
                   }
